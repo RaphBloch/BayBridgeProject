@@ -25,18 +25,15 @@ const Item = ({item}) => {
 
 const MovieDetails = ({route}) => 
 {
-
+    const navigation = useNavigation();
     const {favories,setFavories} = useStore();
     const [modalVisible, setModalVisible] = useState(false);
    
-    const {
-        title,
-        overview,
-        image,
-        rating,
-    } = route.params;
+    const { title,overview,image,rating} = route.params;
 
-
+    /**
+     * Add the title of the movies to my favorites
+     */
     const addToFavories = () => 
     {
         let myfavories = [...favories];
@@ -52,24 +49,18 @@ const MovieDetails = ({route}) =>
         setFavories(myfavories);
     } 
 
-
+    /**
+     * Delete the title of the movies from my favorites
+     */
     const deleteFromFavories = () => 
     {
         let myfavories = favories.filter((item)=> item.title != title.title);
-        if(myfavories.length != favories.lengtt)
+        if(myfavories.length != favories.length)
             Alert.alert('You deleted ' + title.title + ' from your favorites!');
-        console.log(myfavories);
         setFavories(myfavories);
     } 
     
-    useEffect(()=> 
-    {
-
-        console.log(overview);
-        console.log(favories);
-       
-    },[]);
-    const navigation = useNavigation();
+    
 
     const renderItem = ({item}) => (
         <Item item={item} />
@@ -77,7 +68,6 @@ const MovieDetails = ({route}) =>
 
     return(
         <View style={styles.container}>
-
             <View style={{flex: 10}} >
                 <View style={{flex:1 , marginTop : 20,marginBottom : 1,  alignItems : 'center'}}> 
                         <Text style={styles.title}> {title.title}</Text>
@@ -88,18 +78,16 @@ const MovieDetails = ({route}) =>
                         {overview}
                     </Text>
                 </View>
-               <View style={{flex : 5}}>
-                <Image  style={{ margin : 1, width: 400,height: 300 , resizeMode: 'contain'}} source={{ uri: image}}>
-                </Image>
-               </View>
+                <View style={{flex : 5}}>
+                    <Image  style={{ margin : 1, width: 400,height: 300 , resizeMode: 'contain'}} source={{ uri: image}}>
+                    </Image>
+                </View>
                 <View style={{flex:1 , alignItems : 'center' , justifyContent : 'space-around'}}>
                     <Text style={styles.text} > 
                         Note : {JSON.stringify(rating)}
                     </Text>
                 </View>
-               
             </View>
-
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -107,8 +95,7 @@ const MovieDetails = ({route}) =>
                 onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
                 setModalVisible(!modalVisible);
-                }}
-            >
+            }}>
                 <View style={styles.centeredView}> 
                     <View style={styles.modalView}> 
                         <Text style={styles.text} >Favories</Text>
@@ -116,43 +103,40 @@ const MovieDetails = ({route}) =>
                             renderItem={renderItem}
                             keyExtractor={item => item.title}>
                         </FlatList>
-                
                         <Pressable style={styles.button}
                         onPress={() => setModalVisible(!modalVisible)}>
-                        <Text style={styles.text} >Hide Modal</Text>
+                            <Text style={styles.text} >Hide Modal</Text>
                         </Pressable>
                     </View>
                 </View>
-      </Modal>
+            </Modal>
 
             <View style={{ flex : 1 ,flexDirection: 'row'}}>
                 <View style={styles.appButtonContainer}>
                     <Icon.Button
-                    name='plus'
-                    backgroundColor='#3b5698'
-                    style={styles.appButton}
-                    onPress={()=> addToFavories()}
-                    >
-                    <Text style={styles.appButtonText}>Add to Favorites</Text>
+                     name='plus'
+                     backgroundColor='#3b5698'
+                     style={styles.appButton}
+                     onPress={()=> addToFavories()}>
+                        <Text style={styles.appButtonText}>Add to Favorites</Text>
                     </Icon.Button>
                 </View>
                 <View style={styles.appButtonContainer}>
                     <Icon.Button
-                    name='list'
-                    backgroundColor='#3bf600'
-                    style={styles.appButton}
-                    onPress={()=> setModalVisible(true)}
+                     name='list'
+                     backgroundColor='#3bf600'
+                     style={styles.appButton}
+                     onPress={()=> setModalVisible(true)}
                     >
-                    <Text style={styles.appButtonText}> Display Favorites</Text>
+                        <Text style={styles.appButtonText}> Display Favorites</Text>
                     </Icon.Button>
                 </View>
                 <View style={styles.appButtonContainer}>
                     <Icon.Button
-                    name='minus'
-                    backgroundColor='red'
-                    style={styles.appButton}
-                    onPress={()=> deleteFromFavories()}
-                    >
+                     name='minus'
+                     backgroundColor='red'
+                     style={styles.appButton}
+                     onPress={()=> deleteFromFavories()}>
                     <Text style={styles.appButtonText}>Delete from Favorites</Text>
                     </Icon.Button>
                 </View>
@@ -162,14 +146,11 @@ const MovieDetails = ({route}) =>
                     name='home'
                     backgroundColor='turquoise'
                     style={styles.appButton}
-                    onPress={()=> navigation.navigate('Home')}
-                    >
+                    onPress={()=> navigation.navigate('Home')}>
                     <Text style={styles.appButtonText}>Go Home</Text>
                 </Icon.Button>
-            </View>
-           
+            </View>  
         </View>
-
     )
 }
 

@@ -9,8 +9,6 @@ const HomeScreen = () =>
 {
     const navigation = useNavigation();
 
-    
-
     return(
         <View style={styles.container}>
             
@@ -26,20 +24,18 @@ const HomeScreen = () =>
                 justifyContent: 'space-around'}}>
                 <View style={styles.appButtonContainer}>
                     <Icon.Button
-                    name='facebook'
-                    backgroundColor='#3b5698'
-                    style={styles.appButton}
-                    >
-                    <Text style={styles.appButtonText}>Login with Facebook</Text>
+                     name='facebook'
+                     backgroundColor='#3b5698'
+                     style={styles.appButton}>
+                        <Text style={styles.appButtonText}>Login with Facebook</Text>
                     </Icon.Button>
                 </View>
                 <View style={styles.appButtonContainer}>
                     <Icon.Button
-                    name='google'
-                    backgroundColor='red'
-                    style={styles.appButton}
-                    >
-                    <Text style={styles.appButtonText}> Or with Google</Text>
+                     name='google'
+                     backgroundColor='red'
+                     style={styles.appButton}>
+                        <Text style={styles.appButtonText}> Or with Google</Text>
                     </Icon.Button>
                 </View>
             </View>

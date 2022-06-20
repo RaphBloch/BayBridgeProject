@@ -21,8 +21,9 @@
       "supportsTablet": true
     },
     "android": {
+      "package" : "ReactNative.BayBridgeProject",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/tmdb.png",
         "backgroundColor": "#FFFFFF"
       }
     },

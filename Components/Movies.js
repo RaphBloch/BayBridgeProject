@@ -20,8 +20,8 @@ const Item = ({item}) => {
 
     },[]);
     return (
-    <View style={styles.item}>
-        <TouchableOpacity onPress={()=> navigation.navigate(
+        <View style={styles.item}>
+            <TouchableOpacity onPress={()=> navigation.navigate(
             'MovieDetails',
             {
                 title : {title},
@@ -30,15 +30,17 @@ const Item = ({item}) => {
                 rating : item.vote_average
             }
         )}>
-            <Text style={styles.title}>{title}</Text>
-        </TouchableOpacity>
-    </View>
+                 <Text style={styles.title}>{title}</Text>
+            </TouchableOpacity>
+        </View>
     );
 }
 
 
 const Movies = (props) => 
 {
+
+    const navigation =  useNavigation();
     const [movies,setMovies]=useState([]);
 
 
@@ -62,24 +64,22 @@ const Movies = (props) =>
         },[])
     )
 
-    const navigation =  useNavigation();
+    
 
     const renderItem = ({ item }) => (
         <Item item={item} />
       );
     return(
         <View style={styles.container}>
-            <Text style={{
+                <Text style={{
                  textAlign : 'center',
                  fontSize: 16,
                  fontWeight: 'bold',
-                 margin : 10
-            }}> Most popular movies on the WebSite</Text>
+                 margin : 10}}> Most popular movies on the WebSite</Text>
              <FlatList  style={styles.list}
                 data={movies}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
+                keyExtractor={item => item.id}/>
         </View>
            
     )
