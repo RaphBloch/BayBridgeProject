@@ -26,7 +26,7 @@ const Item = ({item}) => {
             {
                 title : {title},
                 overview: item.overview,
-                image : 'https://image.tmdb.org/t/p/original' + item.backdrop_path,
+                image : 'https://image.tmdb.org/t/p/original' + item.poster_path,
                 rating : item.vote_average
             }
         )}>
@@ -52,7 +52,7 @@ const Movies = (props) =>
                   );
                   const json = await response.json();
                   setMovies(json.results);
-                  console.log(json.results);
+                  //console.log(json.results);
                 } catch (error) {
                   console.error(error);
                 }
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       marginTop: StatusBar.currentHeight || 0,
+      backgroundColor : '#ffffe4'
     },
     list :
     {

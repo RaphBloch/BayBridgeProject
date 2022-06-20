@@ -18,9 +18,6 @@ const HomeScreen = () =>
       justifyContent: 'center' }}>
                 <Text style={styles.text}> Welcome to our best Movies App</Text>
                 <Image style={{width: 200,height: 200}} source={require('../assets/tmdb.png')}></Image>
-                {/* <Button style={{borderRadius: 10 , elevation: 8 , paddingVertical: 10,
-    paddingHorizontal: 12}}  title='Movies List' onPress={() => navigation.navigate('Movies')} >
-                </Button> */}
                 <TouchableOpacity  style={styles.touchable} onPress={() => navigation.navigate('Movies')}>
                     <Text style={styles.text} >Movies List</Text>
                 </TouchableOpacity>
@@ -53,7 +50,7 @@ const HomeScreen = () =>
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#ffffe4',
       alignItems: 'center',
       justifyContent: 'center',
     },
