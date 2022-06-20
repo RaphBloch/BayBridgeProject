@@ -1,5 +1,5 @@
 import {StyleSheet, View, Text, ScrollView,TouchableOpacity,Modal,
-    SafeAreaView, FlatList ,Button , Image, Pressable} from 'react-native'; 
+    SafeAreaView, FlatList , Alert , Button , Image, Pressable} from 'react-native'; 
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation,useFocusEffect } from '@react-navigation/native';
 import React ,{useContext, useEffect,useState} from 'react';
@@ -13,7 +13,7 @@ const Item = ({item}) => {
     const [title,setTitle] = useState('');
     useEffect(()=> 
     {
-        console.log(item.title);
+        //console.log(item.title);
         setTitle(item.title);
     },[]);
     return (
@@ -44,7 +44,11 @@ const MovieDetails = ({route}) =>
         console.log(myfavories);
         let titles = myfavories.map((item)=> item.title);
         if( !titles.includes( title.title))
-            myfavories.push(title);
+            
+            {
+                 myfavories.push(title);
+                 Alert.alert('You added ' + title.title + ' to your favorites!');
+            }
         setFavories(myfavories);
     } 
 
@@ -52,6 +56,8 @@ const MovieDetails = ({route}) =>
     const deleteFromFavories = () => 
     {
         let myfavories = favories.filter((item)=> item.title != title.title);
+        if(myfavories.length != favories.lengtt)
+            Alert.alert('You deleted ' + title.title + ' from your favorites!');
         console.log(myfavories);
         setFavories(myfavories);
     } 
@@ -83,7 +89,7 @@ const MovieDetails = ({route}) =>
                     </Text>
                 </View>
                <View style={{flex : 5}}>
-                <Image  style={{ margin : 10, width: 400,height: 300}} source={{ uri: image}}>
+                <Image  style={{ margin : 1, width: 400,height: 300 , resizeMode: 'contain'}} source={{ uri: image}}>
                 </Image>
                </View>
                 <View style={{flex:1 , alignItems : 'center' , justifyContent : 'space-around'}}>
@@ -170,25 +176,27 @@ const MovieDetails = ({route}) =>
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'beige',
+      backgroundColor: '#ffffe4',
       alignItems: 'center',
       justifyContent: 'center',
     },
     itemtitle :
     { 
-        fontSize : 12,
+        fontSize : 10,
         fontWeight : 'bold'
     },
     title : 
     {
-        fontSize : 18,
+        alignSelf : 'center',
+        fontSize : 17,
         fontWeight : 'bold',
-        padding : 10,
+        padding : 5,
     },
     text : 
     {
         fontSize : 15,
-        fontWeight : 'bold'
+        fontWeight : 'bold',
+        fontStyle : 'italic'
     }, 
     modalbutton: {
         borderRadius: 20,
