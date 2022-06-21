@@ -17,7 +17,7 @@ const HomeScreen = () =>
                 <Text style={styles.text}> Welcome to our best Movies App</Text>
                 <Image style={{width: 200,height: 200}} source={require('../assets/tmdb.png')}></Image>
                 <TouchableOpacity  style={styles.touchable} onPress={() => navigation.navigate('Movies')}>
-                    <Text style={styles.text} >Movies List</Text>
+                    <Text style={[styles.text,{color : 'white'}]} >Movies List</Text>
                 </TouchableOpacity>
             </View>
             <View style={{flex:1 ,  flexDirection: 'row',
@@ -69,10 +69,11 @@ const styles = StyleSheet.create({
     appButton: {
         padding: 8,
         borderRadius: 10,
-       alignItems : 'center'
+        alignItems : 'center'
       },
       appButtonText: {
         fontSize: 11,
+        color : 'white',
         fontWeight : 'bold',
       },
       appButtonContainer: {

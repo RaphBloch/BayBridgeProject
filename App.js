@@ -22,9 +22,9 @@ export default function App() {
     }}>
       <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen}/>
-        <Stack.Screen name="MovieDetails" component={MovieDetails} />
-        <Stack.Screen name="Movies" component={Movies}/>
+        <Stack.Screen name="Home" component={HomeScreen}  options={{headerStyle:  styles.header }}/>
+        <Stack.Screen name="MovieDetails" component={MovieDetails}  options={{headerStyle:  styles.header }}/>
+        <Stack.Screen name="Movies" component={Movies} options={{headerStyle:  styles.header }}/>
       </Stack.Navigator>
     </NavigationContainer>
     </StoreContext.Provider>
@@ -38,4 +38,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header : 
+  {
+    backgroundColor: '#ffffe4'
+  }
 });

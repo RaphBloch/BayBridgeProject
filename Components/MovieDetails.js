@@ -13,8 +13,7 @@ const Item = ({item}) => {
     const [title,setTitle] = useState('');
     useEffect(()=> 
     {
-        //console.log(item.title);
-        setTitle(item.title);
+        setTitle(item);
     },[]);
     return (
     <View style={styles.item}>
@@ -37,14 +36,11 @@ const MovieDetails = ({route}) =>
     const addToFavories = () => 
     {
         let myfavories = [...favories];
-        console.log(title);
-        console.log(myfavories);
-        let titles = myfavories.map((item)=> item.title);
-        if( !titles.includes( title.title))
+        if( !myfavories.includes( title))
             
             {
                  myfavories.push(title);
-                 Alert.alert('You added ' + title.title + ' to your favorites!');
+                 Alert.alert('You added ' + title + ' to your favorites!');
             }
         setFavories(myfavories);
     } 
@@ -54,9 +50,9 @@ const MovieDetails = ({route}) =>
      */
     const deleteFromFavories = () => 
     {
-        let myfavories = favories.filter((item)=> item.title != title.title);
+        let myfavories = favories.filter((item)=> item != title);
         if(myfavories.length != favories.length)
-            Alert.alert('You deleted ' + title.title + ' from your favorites!');
+            Alert.alert('You deleted ' + title + ' from your favorites!');
         setFavories(myfavories);
     } 
     
@@ -70,7 +66,7 @@ const MovieDetails = ({route}) =>
         <View style={styles.container}>
             <View style={{flex: 10}} >
                 <View style={{flex:1 , marginTop : 20,marginBottom : 1,  alignItems : 'center'}}> 
-                        <Text style={styles.title}> {title.title}</Text>
+                        <Text style={styles.title}> {title}</Text>
                 </View>
                 <View style={{ flex : 3,  margin : 8 , borderColor: 'gray',
                 alignItems : 'center', borderWidth: 1,padding: 4}}>
@@ -101,7 +97,7 @@ const MovieDetails = ({route}) =>
                         <Text style={styles.text} >Favories</Text>
                         <FlatList data={favories}
                             renderItem={renderItem}
-                            keyExtractor={item => item.title}>
+                            keyExtractor={item => item}>
                         </FlatList>
                         <Pressable style={styles.button}
                         onPress={() => setModalVisible(!modalVisible)}>
@@ -225,6 +221,7 @@ const styles = StyleSheet.create({
       
       appButtonText: {
         fontSize: 8,
+        color : 'white',
         fontWeight : 'bold'
       },
       appButtonContainer: {
